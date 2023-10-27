@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background: linear-gradient(0.25turn, rgb(6, 104, 104), rgb(6, 104, 104));
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+            align-items: center;
+            flex-direction: column;
+        }
+        .text {
+            position: absolute;
+            bottom: 150px;
+            color: black;
+            border-right: 2px solid white;
+            font-size: 55px;
+            color: white;
+            font-family: 'Dancing Script', cursive;
+        }
+        .slider-container {
+            width: 400px;
+            height: 400px;
+            overflow: hidden;
+            position: absolute;
+            top: 100vh; /* Menggeser slider di luar layar ke bawah */
+            z-index: 10;
+            transition: top 1s ease-in; /* Tambahkan animasi saat slider muncul */
+            transition: 3s;
+            opacity: 0;
+        }
+
+        .slider {
+            width: 1200px; /* Lebar total dari semua slide (400px x 3) */
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            width: 400px;
+            height: 400px;
+            background-position: center;
+            background-size: cover;
+            background-color: white;
+            padding: 10px 10px 20px 10px;
+            display: flex;
+        }
+        .slide img{
+            width: 400px;
+        }
+        .wrapper{
+  position: fixed;
+}
+.box div{
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  background-color:transparent;
+  border: 6px solid rgba(255,255,255,0.8);
+}
+.box div:nth-child(1){
+  top: 12%;
+  left: 42%;
+  animation: animate 10s linear infinite;
+}
+.box div:nth-child(2){
+  top: 70%;
+  left: 50%;
+  animation: animate 7s linear infinite;
+}
+.box div:nth-child(3){
+  top: 17%;
+  left: 6%;
+  animation: animate 9s linear infinite;
+}
+.box div:nth-child(4){
+  top: 20%;
+  left: 60%;
+  animation: animate 10s linear infinite;
+}
+.box div:nth-child(5){
+  top: 67%;
+  left: 10%;
+  animation: animate 6s linear infinite;
+}
+.box div:nth-child(6){
+  top: 80%;
+  left: 70%;
+  animation: animate 12s linear infinite;
+}
+.box div:nth-child(7){
+  top: 60%;
+  left: 80%;
+  animation: animate 15s linear infinite;
+}
+.box div:nth-child(8){
+  top: 32%;
+  left: 25%;
+  animation: animate 16s linear infinite;
+}
+.box div:nth-child(9){
+  top: 90%;
+  left: 25%;
+  animation: animate 9s linear infinite;
+}
+.box div:nth-child(10){
+  top: 20%;
+  left: 80%;
+  animation: animate 5s linear infinite;
+}
+@keyframes animate{
+  0%{
+    transform: scale(0) translateY(0) rotate(0);
+    opacity: 1;
+  }
+  100%{
+    transform: scale(1.3) translateY(-90px) rotate(360deg);
+    opacity: 0;
+  }
+}
+/* Untuk layar berukuran kecil, seperti ponsel */
+@media (max-width: 767px) {
+    .slider-container {
+        width: 300px; /* Mengisi seluruh lebar layar */
+        height: 300px; /* Atur tinggi sesuai kebutuhan */
+        top: 50vh;
+    }
+    .slider {
+        width: 300%; /* Mengisi tiga kali lebar .slider-container */
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+    }
+    .slide {
+        width: 33.33%; /* Mengisi sepertiga lebar .slider-container */
+        height: 300px; /* Atur tinggi sesuai kebutuhan */
+    }
+
+    .slide img {
+        width: 100%; /* Mengisi seluruh lebar slide */
+        height: 100%; /* Mengisi seluruh tinggi slide */
+    }
+
+    .text {
+        text-align: center;
+        font-size: 28px; /* Atur ukuran teks sesuai kebutuhan */
+        bottom: 200px; 
+        font-weight: bold;/* Sesuaikan posisi sesuai kebutuhan */
+        z-index: 20;
+    }
+}
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="slider-container">
+        <div class="slider">
+            <div class="slide">
+                <img src="img/1.jpg" alt="">
+            </div>
+            <div class="slide">
+                <img src="img/2.jpg" alt="">
+            </div>
+            <div class="slide">
+                <img src="img/3.png" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="text"></div>
+
+    <audio src="bersamamu.mp3" autoplay></audio>
+    <div class="wrapper">
+        <div class="box">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        </div>
+      </div>
+    <script>
+         document.addEventListener("DOMContentLoaded", function () {
+            const sliderContainer = document.querySelector('.slider-container');
+            const slider = document.querySelector('.slider');
+            const slides = document.querySelectorAll('.slide');
+            let currentSlide = 0;
+            sliderContainer.style.top = '100px';
+            sliderContainer.style.opacity = "1";
+            function nextSlide() {
+                if (currentSlide < slides.length - 1) {
+                    currentSlide++;
+                } else {
+                    return; // Menghentikan perpindahan jika sudah di slide terakhir
+                }
+                const translateX = -currentSlide * sliderContainer.offsetWidth;
+                slider.style.transform = `translateX(${translateX}px)`;
+            }
+
+            setInterval(nextSlide, 5000);
+        });
+
+
+        var textElement = document.querySelector('.text');
+        var texts = [
+            "Bersamamu",
+            "Ku akan dicintai dengan tulus",
+            "tanpa ragu ku akan memberikan cintaku",
+            "Bersamaku kamu tak akan sendu",
+            "Yakin kan kamu aku yang terbaik untukmu"
+        ];
+        var textIndex = 0;
+        var charIndex = 0;
+
+        function typeText() {
+            if (textIndex < texts.length) {
+                if (charIndex < texts[textIndex].length) {
+                    textElement.textContent += texts[textIndex].charAt(charIndex);
+                    charIndex++;
+                    if (textIndex === texts.length - 1) {
+                        setTimeout(typeText, 125); // Waktu jeda antar karakter 200ms hanya untuk teks terakhir
+                    } else {
+                        setTimeout(typeText, 100); // Waktu jeda antar karakter 100ms untuk teks lainnya
+                    }
+                } else {
+                    // Setelah teks saat ini selesai ditampilkan, tunggu 1000ms
+                    setTimeout(function() {
+                        if (textIndex !== texts.length - 1) {
+                            eraseText(); // Hapus teks kecuali teks terakhir setelah menunggu 1000ms
+                        }
+                    }, 1000);
+                }
+            }
+        }
+
+        function eraseText() {
+            if (charIndex > 0) {
+                textElement.textContent = texts[textIndex].substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(eraseText, 0); 
+            } else {
+                textIndex++;
+                if (textIndex < texts.length) {
+                    setTimeout(typeText, 350); // Waktu jeda sebelum menampilkan teks selanjutnya 300ms
+                }
+            }
+        }
+
+// Mulai animasi ketika halaman dimuat // Mulai setelah 11.5 detik
+setTimeout(function() {
+    setTimeout(typeText, 2000); // Tambahkan penundaan 2 detik sebelum memulai animasi teks terakhir
+}, 10050);
+    </script>
+</body>
+</html>

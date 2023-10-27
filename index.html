@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;1,900&display=swap');
+         * {
+            font-family: 'Poppins', cursive;
+        }
+        body{
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            background-color: rgb(14, 88, 117);
+            color: black;
+        }
+        .greetings span{
+            display: inline-block;
+            animation: glow 2.5s infinite;
+            font-size: 6rem;
+            font-weight: 900;
+        }
+        .greetings span:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .greetings span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .greetings span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .greetings span:nth-child(4) {
+            animation-delay: 0.6s;
+        }
+
+        .greetings span:nth-child(5) {
+            animation-delay: 0.8s;
+        }
+
+        .greetings span:nth-child(6) {
+            animation-delay: 1s;
+        }
+
+        .greetings span:nth-child(7) {
+            animation-delay: 1.2s;
+        }
+
+        .greetings span:nth-child(8) {
+            animation-delay: 1.4s;
+        }
+
+        .greetings span:nth-child(9) {
+            animation-delay: 1.6s;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                color: #fff;
+                text-shadow: 0 0 12px #dac1bb, 0 0 50px #c9edf1, 0 0 100px #cae8eb;
+            }
+            10%, 90% {
+                color: rgb(25, 122, 161);
+                text-shadow: none;
+            }
+        }
+        .message{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+        }
+        .message button{
+            width: 70px;
+            background-color: white;
+        }
+        .message button a{
+            font-size: 17px;
+            color: black;
+            text-decoration: none;
+            border-radius: 10px;
+        }
+        @media (max-width: 800px) {
+            .greetings span {
+                font-size: 48px; /* Ganti ukuran teks sesuai dengan kebutuhan */
+            }
+            .message{
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="greetings">
+        <span>D</span>
+        <span>E</span>
+        <span>A</span>
+        <span>R</span>
+        <span>G</span>
+        <span>I</span>
+        <span>R</span>
+        <span>L</span>
+    </div>
+    <div class="message">
+        <p>ni aku ada lagu buat kamu hehe</p>
+        <button><a href="lirik.html">Buka</a></button>>
+    </div>
+</body>
+</html>
